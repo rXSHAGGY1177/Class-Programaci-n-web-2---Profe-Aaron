@@ -1,0 +1,7 @@
+echo "# Class-Programaci-n-web-2---Profe-Aaron" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/rXSHAGGY1177/Class-Programaci-n-web-2---Profe-Aaron.git
+git push -u origin main
