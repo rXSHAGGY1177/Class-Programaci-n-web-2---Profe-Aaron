@@ -1,4 +1,4 @@
-[carrito.js](https://github.com/user-attachments/files/22482105/carrito.js)
+
 var productos = [
     { nombre: 'Camisa', precio: 300 },
     { nombre: 'Pantalón', precio: 500 },
