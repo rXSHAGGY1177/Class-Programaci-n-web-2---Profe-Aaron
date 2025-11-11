@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplicación de Ejercicios</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+        button { display: block; margin: 10px 0; padding: 10px; width: 250px; cursor: pointer; }
+        #output { margin-top: 20px; background: white; padding: 15px; border-radius: 8px; white-space: pre-line; }
+    </style>
+</head>
+<body>
+
+<h2>Aplicación de Clase - Ejercicios</h2>
+
+<button onclick="ejercicioCarrito()">1. Carrito de Compras</button>
+<button onclick="ejercicioComparar()">2. Comparar Números</button>
+<button onclick="ejercicioMayorMenor()">3. Número Mayor y Menor</button>
+<button onclick="ejercicioNumeroSecreto()">4. Número Secreto</button>
+
+<div id="output">Aquí aparecerán los resultados...</div>
+
+<script>
+// -------------------- EJERCICIO 1: CARRITO --------------------
+var productos = [
+    { nombre: 'Camisa', precio: 300 },
+    { nombre: 'Pantalón', precio: 500 },
+    { nombre: 'Zapatos', precio: 800 },
+    { nombre: 'Sombrero', precio: 200 }
+];
+var carrito = [];
+
+function ejercicioCarrito() {
+    let mensaje = "Productos disponibles:\n";
+    productos.forEach((p, i) => mensaje += `${i+1}. ${p.nombre} - $${p.precio}\n`);
+
+    let opcion = prompt(mensaje + "\nIngresa el número del producto para agregarlo al carrito (o 0 para terminar):");
+
+    while(opcion != "0") {
+        let i = Number(opcion) - 1;
+        if(productos[i]) carrito.push(productos[i]);
+        opcion = prompt("Producto agregado ✅\n\n" + mensaje + "\nIngresa otro número (o 0 para terminar):");
+    }
+
+    let total = carrito.reduce((sum, p) => sum + p.precio, 0);
+    let textoCarrito = "Carrito:\n";
+    carrito.forEach((p, i) => textoCarrito += `${i+1}. ${p.nombre} - $${p.precio}\n`);
+    textoCarrito += `\nTotal: $${total}`;
+
+    document.getElementById("output").innerText = textoCarrito;
+}
+
+// -------------------- EJERCICIO 2: COMPARAR --------------------
+function ejercicioComparar() {
+    let n1 = Number(prompt("Escribe el primer número:"));
+    let n2 = Number(prompt("Escribe el segundo número:"));
+    let msj = "";
+
+    if (n1 > n2) msj = `${n1} es mayor que ${n2}`;
+    else if (n1 < n2) msj = `${n1} es menor que ${n2}`;
+    else msj = "Los dos números son iguales";
+
+    document.getElementById("output").innerText = msj;
+}
+
+// -------------------- EJERCICIO 3: MAYOR Y MENOR --------------------
+function ejercicioMayorMenor() {
+    let num1 = Number(prompt("Ingresa el primer número:"));
+    let num2 = Number(prompt("Ingresa el segundo número:"));
+    let num3 = Number(prompt("Ingresa el tercer número:"));
+
+    let mayor, menor;
+
+    mayor = Math.max(num1, num2, num3);
+    menor = Math.min(num1, num2, num3);
+
+    document.getElementById("output").innerText =
+        `El número mayor es: ${mayor}\nEl número menor es: ${menor}`;
+}
+
+// -------------------- EJERCICIO 4: NÚMERO SECRETO --------------------
+function ejercicioNumeroSecreto() {
+    const numeroSecreto = Math.floor(Math.random() * 100) + 1;
+    let intento;
+    let contador = 0;
+
+    do {
+        intento = Number(prompt("Adivina el número (1-100):"));
+        contador++;
+        if (intento > numeroSecreto) alert("Más bajo ⬇️");
+        else if (intento < numeroSecreto) alert("Más alto ⬆️");
+    } while(intento !== numeroSecreto);
+
+    document.getElementById("output").innerText =
+        `🎉 ¡Correcto! El número era ${numeroSecreto}.\nIntentos: ${contador}`;
+}
+</script>
+
+</body>
+</html>
